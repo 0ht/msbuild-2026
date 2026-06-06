@@ -1,0 +1,171 @@
+[
+    {
+        "slug": "github-copilot",
+        "name": "GitHub Copilot",
+        "aka": [
+            "ghcp",
+            "copilot-chat",
+            "copilot-agent-mode"
+        ]
+    },
+    {
+        "slug": "github-copilot-app",
+        "name": "GitHub Copilot App",
+        "aka": []
+    },
+    {
+        "slug": "github-actions",
+        "name": "GitHub Actions",
+        "aka": [
+            "gha"
+        ]
+    },
+    {
+        "slug": "github-code-security",
+        "name": "GitHub Code Security",
+        "aka": [
+            "ghas",
+            "advanced-security"
+        ]
+    },
+    {
+        "slug": "m365-copilot",
+        "name": "Microsoft 365 Copilot",
+        "aka": [
+            "copilot-m365"
+        ]
+    },
+    {
+        "slug": "azure-ai-foundry",
+        "name": "Azure AI Foundry",
+        "aka": [
+            "foundry",
+            "microsoft-foundry"
+        ]
+    },
+    {
+        "slug": "foundry-local",
+        "name": "Foundry Local",
+        "aka": []
+    },
+    {
+        "slug": "azure-cosmos-db",
+        "name": "Azure Cosmos DB",
+        "aka": [
+            "cosmos-db"
+        ]
+    },
+    {
+        "slug": "azure-functions",
+        "name": "Azure Functions",
+        "aka": []
+    },
+    {
+        "slug": "azure-container-apps",
+        "name": "Azure Container Apps",
+        "aka": [
+            "aca"
+        ]
+    },
+    {
+        "slug": "azure-kubernetes-service",
+        "name": "Azure Kubernetes Service",
+        "aka": [
+            "aks"
+        ]
+    },
+    {
+        "slug": "azure-sre-agent",
+        "name": "Azure SRE Agent",
+        "aka": [
+            "sre-agent"
+        ]
+    },
+    {
+        "slug": "azure-sql",
+        "name": "Azure SQL",
+        "aka": []
+    },
+    {
+        "slug": "azure-horizondb",
+        "name": "Azure HorizonDB",
+        "aka": [
+            "horizondb"
+        ]
+    },
+    {
+        "slug": "microsoft-fabric",
+        "name": "Microsoft Fabric",
+        "aka": [
+            "fabric"
+        ]
+    },
+    {
+        "slug": "dotnet",
+        "name": ".NET",
+        "aka": [
+            "dotnet-aspire",
+            "aspire"
+        ]
+    },
+    {
+        "slug": "visual-studio",
+        "name": "Visual Studio",
+        "aka": [
+            "vs"
+        ]
+    },
+    {
+        "slug": "vs-code",
+        "name": "Visual Studio Code",
+        "aka": [
+            "vscode"
+        ]
+    },
+    {
+        "slug": "windows-dev",
+        "name": "Windows Development",
+        "aka": [
+            "windows",
+            "win32",
+            "winui"
+        ]
+    },
+    {
+        "slug": "microsoft-entra",
+        "name": "Microsoft Entra",
+        "aka": [
+            "entra-id",
+            "azure-ad"
+        ]
+    },
+    {
+        "slug": "mcp",
+        "name": "Model Context Protocol",
+        "aka": []
+    },
+    {
+        "slug": "agent-framework",
+        "name": "Microsoft Agent Framework",
+        "aka": []
+    },
+    {
+        "slug": "rayfin",
+        "name": "Rayfin",
+        "aka": []
+    },
+    {
+        "slug": "microsoft-scout",
+        "name": "Microsoft Scout",
+        "aka": [
+            "scout"
+        ]
+    },
+    {
+        "slug": "microsoft-discovery",
+        "name": "Microsoft Discovery",
+        "aka": [
+            "discovery"
+        ]
+    }
+]

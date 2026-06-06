@@ -1,0 +1,16 @@
+{
+    "event": "Microsoft Build 2026",
+    "year": 2026,
+    "dates": {
+        "start": "2026-06-02",
+        "end": "2026-06-03"
+    },
+    "location": "Fort Mason Center, San Francisco, CA",
+    "timezone": "America/Los_Angeles",
+    "urls": {
+        "homepage": "https://build.microsoft.com/",
+        "news": "https://news.microsoft.com/build-2026/",
+        "liveBlog": "https://news.microsoft.com/build-2026-live-blog/",
+        "sessionCatalog": "https://build.microsoft.com/en-US/sessions"
+    }
+}

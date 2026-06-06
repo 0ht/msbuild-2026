@@ -1,0 +1,21 @@
+# Generated outputs (rebuilt by CI)
+site/**/*.md
+site/.vitepress/nav.json
+site/.vitepress/cache/
+site/.vitepress/dist/
+public/
+
+# Keep VitePress config (hand-written)
+!site/.vitepress/config.ts
+
+# Node
+node_modules/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/*
+!.vscode/settings.json

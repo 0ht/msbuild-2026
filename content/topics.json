@@ -1,0 +1,26 @@
+[
+    {
+        "slug": "agents-and-apps",
+        "name": "Agents & apps"
+    },
+    {
+        "slug": "developer-tools-and-frameworks",
+        "name": "Developer tools & frameworks"
+    },
+    {
+        "slug": "cloud-platform-and-data",
+        "name": "Cloud platform & data"
+    },
+    {
+        "slug": "responsible-ai",
+        "name": "Responsible AI"
+    },
+    {
+        "slug": "working-with-models",
+        "name": "Working with models"
+    },
+    {
+        "slug": "windows",
+        "name": "Windows"
+    }
+]

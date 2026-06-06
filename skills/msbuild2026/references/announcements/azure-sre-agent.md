@@ -1,0 +1,44 @@
+# Azure SRE Agent
+
+VNet 統合、マネージドコネクタ、権限モデル、GitHub Enterprise 対応、 プライベートプラグインマーケットプレイスの 5 機能でエンタープライズ対応を強化。
+
+## 概要
+
+Azure SRE Agent は、AI を活用してインシデント対応と運用トイルの自動化を行うエージェントサービスである。2026年3月の GA 以降、プロダクション環境での利用が拡大しており、Build 2026 ではエンタープライズ環境への本格導入を可能にする5つの機能が発表された。
+
+## 主な変更点
+
+- **VNet 統合**: SRE Agent をプライベートネットワーク内で実行。エンタープライズのネットワーク境界とプライベート接続に完全対応（**Preview**）
+- **マネージドコネクタ**: Azure サービスとの事前構築された接続。セットアップ不要で即利用可能（**Preview**）
+- **権限モデル**: ツール単位のアクセスポリシーと人間承認フロー。マネージド ID ベースの制御（**Preview**）
+- **GitHub Enterprise ネイティブ対応**: GHE テナントのコードとイシューに安全にアクセス（**Preview**）
+- **プライベートプラグインマーケットプレイス**: 組織内でスキル・MCP ツール・運用ワークフローを共有するためのガバナンス付きマーケットプレイス（**Preview**）
+
+## 技術的詳細
+
+SRE Agent はテレメトリとソースコードを横断して推論し、インシデントの根本原因分析を自動化する。VNet 統合により、プライベートエンドポイント経由で Azure リソースにアクセスでき、egress ルールが厳格な環境でも動作する。
+
+権限モデルは多層防御の設計思想に基づく。マネージド ID をベースに、ツール単位のポリシー、実行前の人間承認フック、監査ログを組み合わせてエージェントの行動をガバナンスする。
+
+## 応用シナリオ
+
+- プライベートネットワーク内の AKS / Container Apps ワークロードに対するインシデント自動調査
+- GitHub Enterprise のコードベースとテレメトリを横断した根本原因分析
+- プラットフォームチームが承認済みスキルをプラグインマーケットプレイスで全テナントに配布
+
+## 制約・注意点
+
+- VNet 統合、マネージドコネクタ、権限モデル、GHE 対応、Plugin Marketplace はすべて **Preview**
+- GA 済み機能との組み合わせで動作するが、プレビュー機能の SLA は適用外
+- 2026年4月15日以降、AAU（Active Agent Unit）ベースの課金に変更
+
+## 参考リンク
+
+- [Azure SRE Agent at Build 2026](https://techcommunity.microsoft.com/blog/appsonazureblog/azure-sre-agent-at-microsoft-build-2026-bringing-agentic-operations-to-the-enter/4524669)
+- [Tool Permissions and Hooks](https://techcommunity.microsoft.com/blog/appsonazureblog/shaping-what-azure-sre-agent-does-tool-permissions-and-hooks/4524791)
+- [GA リリース](https://techcommunity.microsoft.com/blog/appsonazureblog/announcing-general-availability-for-the-azure-sre-agent/4500682)
+
+## 公式ソース
+
+- [https://techcommunity.microsoft.com/blog/appsonazureblog/azure-sre-agent-at-microsoft-build-2026-bringing-agentic-operations-to-the-enter/4524669](https://techcommunity.microsoft.com/blog/appsonazureblog/azure-sre-agent-at-microsoft-build-2026-bringing-agentic-operations-to-the-enter/4524669)
+- [https://techcommunity.microsoft.com/blog/appsonazureblog/shaping-what-azure-sre-agent-does-tool-permissions-and-hooks/4524791](https://techcommunity.microsoft.com/blog/appsonazureblog/shaping-what-azure-sre-agent-does-tool-permissions-and-hooks/4524791)

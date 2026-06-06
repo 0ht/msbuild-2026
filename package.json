@@ -1,0 +1,23 @@
+{
+    "name": "msbuild2026",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=24"
+    },
+    "scripts": {
+        "build": "npm run build:content && npm run build:vitepress",
+        "build:content": "tsx scripts/build-site.mts && tsx scripts/build-llms.mts && tsx scripts/build-skills.mts && tsx scripts/build-well-known.mts",
+        "build:vitepress": "vitepress build site",
+        "dev": "npm run build:content && vitepress dev site",
+        "preview": "npm run build && vitepress preview site"
+    },
+    "devDependencies": {
+        "vitepress": "^1.6.0",
+        "tsx": "^4.19.0",
+        "gray-matter": "^4.0.3",
+        "@types/node": "^22.0.0",
+        "typescript": "^5.7.0"
+    }
+}
