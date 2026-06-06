@@ -82,7 +82,7 @@ Pages は `site/.vitepress/dist/` をデプロイする。
 
 **Pages に載せないもの:**
 
-- `skills/` — プラグインインストールはリポジトリクローン方式 (`/plugin install <owner>/msbuild-2026`)
+- `skills/` — プラグインインストールはリポジトリクローン方式 (`/plugin install openjny/msbuild-2026`)
 
 ## git 管理方針
 
