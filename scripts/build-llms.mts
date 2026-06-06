@@ -15,7 +15,7 @@ import { DEFAULT_DELIVERIES } from './lib/types.mjs';
 import type { ContentEntry, TopicDef } from './lib/types.mjs';
 
 const PUBLIC_DIR = path.resolve(import.meta.dirname, '../public');
-const SITE_BASE = '/msbuild2026';
+const SITE_BASE = '/msbuild-2026';
 // TODO: Replace with actual domain when deployed
 const SITE_ORIGIN = 'https://openjny.github.io';
 

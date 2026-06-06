@@ -20,7 +20,7 @@ const WELL_KNOWN_DIR = path.resolve(
   import.meta.dirname,
   '../public/.well-known',
 );
-const SITE_BASE = '/msbuild2026';
+const SITE_BASE = '/msbuild-2026';
 
 function shouldBuildLlms(entry: ContentEntry): boolean {
   const d = entry.frontmatter.deliveries ?? DEFAULT_DELIVERIES;

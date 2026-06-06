@@ -5,7 +5,7 @@ export default defineConfig({
   title: 'Microsoft Build 2026',
   description:
     'Microsoft Build 2026 の情報ハブ — アナウンス・セッション・リソースを日本語で集約',
-  base: '/msbuild2026/',
+  base: '/msbuild-2026/',
   lang: 'ja',
   lastUpdated: true,
 
@@ -34,7 +34,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/openjny/msbuild2026' },
+      { icon: 'github', link: 'https://github.com/openjny/msbuild-2026' },
     ],
 
     footer: {

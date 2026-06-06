@@ -1,5 +1,5 @@
 ---
-name: msbuild2026
+name: msbuild-2026
 description: >-
   Microsoft Build 2026 の発表情報を提供する。アナウンス、セッション情報、リソースを参照可能。
   Build 2026 の新機能、Azure/GitHub/Copilot のアップデート、セッション概要について知りたいときに使う。
