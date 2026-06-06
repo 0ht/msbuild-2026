@@ -2,8 +2,10 @@
 id: microsoft-foundry
 title: Microsoft Foundry
 summary: >-
-  Agent Framework の GA、Hosted Agents、Toolboxes、メモリ、Foundry IQ など、
-  エージェント開発・運用基盤の大幅強化。
+  Microsoft Foundry の Agent Framework が GA に到達し、複数の AI フレームワークと統合可能なエージェント基盤を提供。
+  Hosted Agents、Toolboxes、Memory、Foundry IQ などを Public Preview で追加し、
+  エージェントの開発・デプロイ・運用までをカバーするプラットフォームを強化。
+  Foundry Toolkit for VS Code も GA となり、ローカルでのエージェント開発体験が整備された。
 tags:
   - azure-ai-foundry
   - agent-framework
@@ -42,6 +44,22 @@ Foundry IQ はベクトル検索とグラフベースのナレッジを統合し
 - 社内ナレッジベースと連携したカスタマーサポートエージェントの構築（Foundry IQ + Memory）
 - 複数の外部 API をツールとして登録し、タスク自動化エージェントを公開（Toolboxes + Teams 連携）
 - ローカル環境でのエージェント開発・テスト（Foundry Toolkit for VS Code + Foundry Local）
+
+## 制約・注意点
+
+| 機能 | ステータス |
+|------|------------|
+| Agent Framework | **GA** |
+| Foundry Toolkit for VS Code | **GA** |
+| Hosted Agents | **GA 予定: 2026年7月** |
+| Toolboxes | **Public Preview** |
+| Voice Live | **Public Preview** |
+| Memory in Foundry Agent Service | **Public Preview** |
+| Foundry IQ | **Public Preview** |
+
+- Public Preview 機能の SLA は非保証
+- Hosted Agents は 2026年7月に GA 予定
+- 利用には Azure サブスクリプションが必要
 
 ## 参考リンク
 
