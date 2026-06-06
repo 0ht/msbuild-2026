@@ -1,6 +1,6 @@
 /**
  * build-skills.mts
- * Transforms content/ → skills/msbuild2026/ (SKILL.md hub + references)
+ * Transforms content/ → skills/msbuild-2026/ (SKILL.md hub + references)
  * Also generates skills/plugin.json
  */
 
@@ -22,11 +22,8 @@ function buildSkillHub(entries: ContentEntry[], topics: TopicDef[]): string {
 
   const lines: string[] = [
     '---',
-    'name: msbuild2026',
-    'description: >-',
-    '  Microsoft Build 2026 の発表情報を提供する。アナウンス、セッション情報、リソースを参照可能。',
-    '  Build 2026 の新機能、Azure/GitHub/Copilot のアップデート、セッション概要について知りたいときに使う。',
-    '  Triggers: Build 2026, Microsoft Build, アナウンス, セッション, 新機能',
+    'name: msbuild-2026',
+    "description: 'Microsoft Build 2026 でのアナウンス、セッション情報や関連リソース情報を提供するスキル。Triggers: Build 2026, アナウンス, セッション, 新機能, GA, Preview'",
     '---',
     '',
     '# Microsoft Build 2026 Info Hub',
@@ -87,13 +84,13 @@ function buildReference(entry: ContentEntry): string {
 /** Generate plugin.json */
 function buildPluginJson(): string {
   const plugin = {
-    name: 'msbuild2026',
+    name: 'msbuild-2026',
     description:
       'Microsoft Build 2026 の発表情報・セッション・リソースを提供するスキルプラグイン',
     version: '0.1.0',
     author: { name: 'openjny' },
     license: 'CC-BY-4.0',
-    skills: 'msbuild2026/',
+    skills: 'msbuild-2026/',
   };
   return JSON.stringify(plugin, null, 2) + '\n';
 }
@@ -109,7 +106,7 @@ console.log(
 
 // SKILL.md hub
 writeFile(
-  path.join(SKILLS_DIR, 'msbuild2026', 'SKILL.md'),
+  path.join(SKILLS_DIR, 'msbuild-2026', 'SKILL.md'),
   buildSkillHub(entries, topics),
 );
 
@@ -118,7 +115,7 @@ for (const entry of entries) {
   if (!shouldBuildSkills(entry)) continue;
   const outPath = path.join(
     SKILLS_DIR,
-    'msbuild2026',
+    'msbuild-2026',
     'references',
     entry.relativePath,
   );
