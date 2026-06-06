@@ -14,6 +14,13 @@
         "aka": []
     },
     {
+        "slug": "github-copilot-sdk",
+        "name": "GitHub Copilot SDK",
+        "aka": [
+            "copilot-sdk"
+        ]
+    },
+    {
         "slug": "github-actions",
         "name": "GitHub Actions",
         "aka": [

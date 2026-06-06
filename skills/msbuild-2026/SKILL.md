@@ -16,7 +16,8 @@ Microsoft Build 2026 (2026/06/02-03, Fort Mason Center) の発表情報を集約
 
 ## Developer tools & frameworks
 
-- [GitHub Copilot Agent Mode](references/announcements/github-copilot-agent-mode.md): GitHub Copilot が自律的にタスクを計画・実行する Agent Mode の精度向上とターミナル統合強化に加え、 エディタ非依存のデスクトップアプリ GitHub Copilot App を Preview で発表。 また Copilot SDK により、Agent Mode と同じランタイムを使ったカスタムエージェントの構築が可能に。 マルチファイル編集の精度向上と MCP サーバー連携により、開発ワークフローの自動化範囲が拡大。
+- [GitHub Copilot App](references/announcements/github-copilot-app.md): エディタに依存しないエージェントネイティブのデスクトップアプリ GitHub Copilot App を Preview で発表。 My Work ビューでリポジトリ横断のセッション・Issue・PR・バックグラウンド自動化を一元管理し、 エージェントの作業過程と判断根拠を透明化する Trace 機能を搭載。 Agent Mode の進化として、開発者のワークフロー全体をカバーする新しいサーフェスを提供する。
+- [GitHub Copilot SDK](references/announcements/github-copilot-sdk.md): GitHub Copilot のエージェントランタイムをプログラマブルなレイヤーとして公開する Copilot SDK が Public Preview。 Python・JavaScript・Go・C#・Java の 5 言語で利用可能。ツール呼び出し、ストリーミング、 ファイル操作、マルチターンセッションを備え、独自アプリケーションにエージェント機能を組み込める。 Copilot クラウドエージェントや Copilot CLI と同じランタイム基盤を使用する。
 
 ## Cloud platform & data
 
