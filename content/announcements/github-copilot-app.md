@@ -1,11 +1,7 @@
 ---
 id: github-copilot-app
 title: GitHub Copilot App
-summary: >-
-  エディタに依存しないエージェントネイティブのデスクトップアプリ GitHub Copilot App を Preview で発表。
-  My Work ビューでリポジトリ横断のセッション・Issue・PR・バックグラウンド自動化を一元管理し、
-  エージェントの作業過程と判断根拠を透明化する Trace 機能を搭載。
-  Agent Mode の進化として、開発者のワークフロー全体をカバーする新しいサーフェスを提供する。
+summary: エディタに依存しないエージェントネイティブのデスクトップアプリ GitHub Copilot App を Preview で発表。My Work ビューでリポジトリ横断のセッション・Issue・PR・バックグラウンド自動化を一元管理し、エージェントの作業過程と判断根拠を透明化する Trace 機能を搭載。Agent Mode の進化として、開発者のワークフロー全体をカバーする新しいサーフェスを提供する。
 tags:
   - github-copilot
   - github-copilot-app

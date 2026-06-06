@@ -1,6 +1,6 @@
 # Microsoft Foundry
 
-Microsoft Foundry の Agent Framework が GA に到達し、複数の AI フレームワークと統合可能なエージェント基盤を提供。 Hosted Agents、Toolboxes、Memory、Foundry IQ などを Public Preview で追加し、 エージェントの開発・デプロイ・運用までをカバーするプラットフォームを強化。 Foundry Toolkit for VS Code も GA となり、ローカルでのエージェント開発体験が整備された。
+Microsoft Foundry の Agent Framework が GA に到達し、複数の AI フレームワークと統合可能なエージェント基盤を提供。Hosted Agents、Toolboxes、Memory、Foundry IQ などを Public Preview で追加し、エージェントの開発・デプロイ・運用までをカバーするプラットフォームを強化。Foundry Toolkit for VS Code も GA となり、ローカルでのエージェント開発体験が整備された。
 
 ## 概要
 

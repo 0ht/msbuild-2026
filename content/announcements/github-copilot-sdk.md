@@ -1,11 +1,7 @@
 ---
 id: github-copilot-sdk
 title: GitHub Copilot SDK
-summary: >-
-  GitHub Copilot のエージェントランタイムをプログラマブルなレイヤーとして公開する Copilot SDK が Public Preview。
-  Python・JavaScript・Go・C#・Java の 5 言語で利用可能。ツール呼び出し、ストリーミング、
-  ファイル操作、マルチターンセッションを備え、独自アプリケーションにエージェント機能を組み込める。
-  Copilot クラウドエージェントや Copilot CLI と同じランタイム基盤を使用する。
+summary: GitHub Copilot のエージェントランタイムをプログラマブルなレイヤーとして公開する Copilot SDK が Public Preview。Python・JavaScript・Go・C#・Java の 5 言語で利用可能。ツール呼び出し、ストリーミング、ファイル操作、マルチターンセッションを備え、独自アプリケーションにエージェント機能を組み込める。Copilot クラウドエージェントや Copilot CLI と同じランタイム基盤を使用する。
 tags:
   - github-copilot
   - github-copilot-sdk

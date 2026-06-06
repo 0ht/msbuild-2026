@@ -1,11 +1,7 @@
 ---
 id: azure-sre-agent
 title: Azure SRE Agent
-summary: >-
-  Azure SRE Agent に VNet 統合、マネージドコネクタ、ツール単位の権限モデル、
-  GitHub Enterprise ネイティブ対応、プライベートプラグインマーケットプレイスの 5 機能が Preview で追加。
-  プライベートネットワーク内でのエージェント実行、エンタープライズのガバナンス要件への対応、
-  組織内での運用スキル共有を実現し、プロダクション環境での SRE Agent 本格導入を可能にする。
+summary: Azure SRE Agent に VNet 統合、マネージドコネクタ、ツール単位の権限モデル、GitHub Enterprise ネイティブ対応、プライベートプラグインマーケットプレイスの 5 機能が Preview で追加。プライベートネットワーク内でのエージェント実行、エンタープライズのガバナンス要件への対応、組織内での運用スキル共有を実現し、プロダクション環境での SRE Agent 本格導入を可能にする。
 tags:
   - azure-sre-agent
   - azure-kubernetes-service

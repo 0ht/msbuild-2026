@@ -12,13 +12,13 @@ Microsoft Build 2026 (2026/06/02-03, Fort Mason Center) の発表情報を集約
 
 ## Agents & apps
 
-- [Microsoft Foundry](references/announcements/microsoft-foundry.md): Microsoft Foundry の Agent Framework が GA に到達し、複数の AI フレームワークと統合可能なエージェント基盤を提供。 Hosted Agents、Toolboxes、Memory、Foundry IQ などを Public Preview で追加し、 エージェントの開発・デプロイ・運用までをカバーするプラットフォームを強化。 Foundry Toolkit for VS Code も GA となり、ローカルでのエージェント開発体験が整備された。
+- [Microsoft Foundry](references/announcements/microsoft-foundry.md): Microsoft Foundry の Agent Framework が GA に到達し、複数の AI フレームワークと統合可能なエージェント基盤を提供。Hosted Agents、Toolboxes、Memory、Foundry IQ などを Public Preview で追加し、エージェントの開発・デプロイ・運用までをカバーするプラットフォームを強化。Foundry Toolkit for VS Code も GA となり、ローカルでのエージェント開発体験が整備された。
 
 ## Developer tools & frameworks
 
-- [GitHub Copilot App](references/announcements/github-copilot-app.md): エディタに依存しないエージェントネイティブのデスクトップアプリ GitHub Copilot App を Preview で発表。 My Work ビューでリポジトリ横断のセッション・Issue・PR・バックグラウンド自動化を一元管理し、 エージェントの作業過程と判断根拠を透明化する Trace 機能を搭載。 Agent Mode の進化として、開発者のワークフロー全体をカバーする新しいサーフェスを提供する。
-- [GitHub Copilot SDK](references/announcements/github-copilot-sdk.md): GitHub Copilot のエージェントランタイムをプログラマブルなレイヤーとして公開する Copilot SDK が Public Preview。 Python・JavaScript・Go・C#・Java の 5 言語で利用可能。ツール呼び出し、ストリーミング、 ファイル操作、マルチターンセッションを備え、独自アプリケーションにエージェント機能を組み込める。 Copilot クラウドエージェントや Copilot CLI と同じランタイム基盤を使用する。
+- [GitHub Copilot App](references/announcements/github-copilot-app.md): エディタに依存しないエージェントネイティブのデスクトップアプリ GitHub Copilot App を Preview で発表。My Work ビューでリポジトリ横断のセッション・Issue・PR・バックグラウンド自動化を一元管理し、エージェントの作業過程と判断根拠を透明化する Trace 機能を搭載。Agent Mode の進化として、開発者のワークフロー全体をカバーする新しいサーフェスを提供する。
+- [GitHub Copilot SDK](references/announcements/github-copilot-sdk.md): GitHub Copilot のエージェントランタイムをプログラマブルなレイヤーとして公開する Copilot SDK が Public Preview。Python・JavaScript・Go・C#・Java の 5 言語で利用可能。ツール呼び出し、ストリーミング、ファイル操作、マルチターンセッションを備え、独自アプリケーションにエージェント機能を組み込める。Copilot クラウドエージェントや Copilot CLI と同じランタイム基盤を使用する。
 
 ## Cloud platform & data
 
-- [Azure SRE Agent](references/announcements/azure-sre-agent.md): Azure SRE Agent に VNet 統合、マネージドコネクタ、ツール単位の権限モデル、 GitHub Enterprise ネイティブ対応、プライベートプラグインマーケットプレイスの 5 機能が Preview で追加。 プライベートネットワーク内でのエージェント実行、エンタープライズのガバナンス要件への対応、 組織内での運用スキル共有を実現し、プロダクション環境での SRE Agent 本格導入を可能にする。
+- [Azure SRE Agent](references/announcements/azure-sre-agent.md): Azure SRE Agent に VNet 統合、マネージドコネクタ、ツール単位の権限モデル、GitHub Enterprise ネイティブ対応、プライベートプラグインマーケットプレイスの 5 機能が Preview で追加。プライベートネットワーク内でのエージェント実行、エンタープライズのガバナンス要件への対応、組織内での運用スキル共有を実現し、プロダクション環境での SRE Agent 本格導入を可能にする。
