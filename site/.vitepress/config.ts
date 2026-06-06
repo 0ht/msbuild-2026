@@ -9,6 +9,10 @@ export default defineConfig({
   lang: 'ja',
   lastUpdated: true,
 
+  vite: {
+    publicDir: '../public',
+  },
+
   head: [['meta', { name: 'robots', content: 'index, follow' }]],
 
   themeConfig: {
