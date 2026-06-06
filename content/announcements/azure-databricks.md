@@ -24,24 +24,30 @@ Azure Databricks は Build 2026 で、エージェント開発向けの 2 つの
 
 - **ワークスペース全体の MCP エンドポイント**: 1 つのエンドポイントで全 Genie Space と Unity Catalog データセットにアクセス（**Public Preview**）
 - **GitHub Copilot agent mode での Lakebase デバッグ**: 本番 AI エージェントを実データに対してデバッグ（**Public Preview**）
+- **Copilot Studio 統合の簡素化**: 個別 Genie Space の手動登録が不要に
 
 ## 詳細
 
 ### ワークスペース全体の MCP エンドポイント
 
-従来、Copilot Studio から Azure Databricks の Genie に接続するには各 Genie Space を個別のツールとして追加する必要があった。ワークスペース全体の MCP エンドポイントにより、1 つの接続で複数の Genie Space にアクセス可能になり、管理オーバーヘッドを削減。
+従来、Copilot Studio から Azure Databricks の Genie に接続するには各 Genie Space を個別のツールとして追加する必要があった。ワークスペース全体の MCP エンドポイントにより、1 つの接続で複数の Genie Space にアクセス可能になり、管理オーバーヘッドを削減。エージェントは単一のエンドポイントからワークスペース内の全データに推論可能。
 
 ### GitHub Copilot agent mode でのデバッグ
 
-本番 AI エージェントを実際の Lakebase データに対してデバッグ可能。Unity Catalog のガバナンスと既存のコンプライアンス制御を維持しながら、開発からデプロイまでの一貫したツールチェーンを実現。
+本番 AI エージェントを実際の Lakebase データに対してデバッグ可能。Unity Catalog のガバナンスと既存のコンプライアンス制御を維持しながら、開発からデプロイまでの一貫したツールチェーンを実現。開発者はローカル環境から本番データの構造とアクセスパターンを検証でき、デプロイ後のエラーを削減する。
 
-### 統合の利点
+### 統合による利点
 
-- Copilot Studio エージェントが Azure Databricks ワークスペース全体を推論対象に
-- Unity Catalog ガバナンスをオーサリングからデプロイまで維持
-- GitHub・Azure Databricks・Microsoft 365 でデータ・エージェント・開発者ツールチェーンを標準化
+GitHub・Azure Databricks・Microsoft 365 のツールチェーンが標準化され、データガバナンス（Unity Catalog）を維持しながらエージェント開発のライフサイクル全体をカバーする。Copilot Studio エージェントがワークスペース全体を推論対象にできるため、データの発見と活用が効率化される。
+
+## 応用シナリオ
+
+- Copilot Studio エージェントが 1 つの MCP 接続で Azure Databricks ワークスペース全体のデータを推論し、ビジネスインサイトを生成
+- GitHub Copilot agent mode で Lakebase のデータを参照しながらデータパイプラインのコードをデバッグ
+- Unity Catalog のガバナンスを維持しつつ、複数チームが同じワークスペースのエージェントを安全に共有
 
 ## 参考リンク
 
 - [Building AI apps and agents with Azure Databricks, Copilot Studio, and GitHub Copilot](https://techcommunity.microsoft.com/blog/analyticsonazure/building-ai-apps-and-agents-with-azure-databricks-copilot-studio-and-github-copi/4524065)
 - [Azure Databricks ドキュメント](https://learn.microsoft.com/azure/databricks/)
+- [Unity Catalog ドキュメント](https://learn.microsoft.com/azure/databricks/data-governance/unity-catalog/)
