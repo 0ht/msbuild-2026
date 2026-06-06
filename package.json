@@ -11,7 +11,9 @@
         "build:content": "tsx scripts/build-site.mts && tsx scripts/build-llms.mts && tsx scripts/build-skills.mts && tsx scripts/build-well-known.mts",
         "build:vitepress": "vitepress build site",
         "dev": "npm run build:content && vitepress dev site",
-        "preview": "npm run build && vitepress preview site"
+        "preview": "npm run build && vitepress preview site",
+        "validate": "tsx scripts/validate.mts",
+        "prepare": "git config core.hooksPath .githooks"
     },
     "devDependencies": {
         "vitepress": "^1.6.0",

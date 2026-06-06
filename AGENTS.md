@@ -27,8 +27,15 @@ Microsoft Build 2026 の発表情報を集約したナレッジベース。
 ## 変更時の手順
 
 1. `content/` 配下のファイルを追加・編集する
-2. CI が自動で `skills/` を再生成してコミットする（`site/` と `public/` は `.gitignore` 対象）
-3. CI は frontmatter の検証とリンク整合性チェックを実行する
+2. `npm run validate` でローカル検証する（pre-commit hook で自動実行される）
+3. CI が自動で `skills/` を再生成してコミットする（`site/` と `public/` は `.gitignore` 対象）
+4. CI は frontmatter の検証とリンク整合性チェックを実行する
+
+### ローカルバリデーション
+
+`npm run validate` はコミット前に自動実行される（`.githooks/pre-commit`）。`npm install` 時に `prepare` スクリプトが `core.hooksPath` を設定するため、追加のセットアップは不要。
+
+バリデーション内容は `docs/content-guide.md` の「announcement の必須深さ基準」を参照。
 
 ### メタデータ JSON の更新ポリシー
 

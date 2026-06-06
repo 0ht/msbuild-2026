@@ -24,6 +24,8 @@ export interface ContentEntry {
   body: string;
   /** Relative path from content/ root, e.g. "announcements/github-copilot-agent-mode.md" */
   relativePath: string;
+  /** Body-depth validation warnings (populated by validate, not persisted) */
+  _bodyWarnings?: string[];
 }
 
 export interface TopicDef {

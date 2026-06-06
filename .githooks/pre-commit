@@ -1,0 +1,5 @@
+#!/bin/sh
+# Pre-commit hook: run content validation
+# Installed via `npm install` (package.json "prepare" script)
+
+npm run validate

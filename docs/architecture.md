@@ -17,13 +17,18 @@ content/                        ← Single Source of Truth（手書き）
 └── allowed-domains.json        ← official_sources に許可するドメイン一覧
 
 scripts/                        ← 変換パイプライン（TypeScript）
+├── validate.mts                ← コンテンツバリデーション（pre-commit hook から呼ばれる）
 ├── build-site.mts              ← content → site/
 ├── build-llms.mts              ← content → public/llms/
 ├── build-skills.mts            ← content → skills/
 ├── build-well-known.mts        ← content → public/.well-known/
 └── lib/
     ├── types.mts               ← frontmatter の型定義（全スクリプト共通）
+    ├── validate.mts            ← バリデーションロジック（frontmatter + 本文深さ検査）
     └── content.mts             ← コンテンツ読み込みユーティリティ
+
+.githooks/                      ← Git フック（core.hooksPath で参照）
+└── pre-commit                  ← npm run validate を実行
 
 site/                           ← VitePress 入力（生成物。site/.vitepress/config.ts のみ手書き）
 ├── index.md                    ← ランディング

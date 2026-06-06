@@ -49,6 +49,8 @@
 | plugin.json | GitHub Copilot / Claude Code デュアルマニフェスト対応 | 両エコシステムに配布 |
 | site/ と public/ の git 管理 | .gitignore（CI で毎回生成） | リポジトリサイズ削減。差分レビューは不要と判断 |
 | skills/ の git 管理 | コミット | プラグインインストール時にビルド不要にするため |
+| pre-commit hook | `.githooks/` + `core.hooksPath` | husky 等の追加依存なし。`npm install` の `prepare` で自動設定 |
+| 本文深さバリデーション | announcement のみ CI 検査 | セクション存在・項目数・行数を決定論的に検証。session/resource は別テンプレートで対象外 |
 | ナビ/サイドバー | build-site が nav.json を生成、config.ts が import | 手書き config とパイプライン生成を分離 |
 | ライセンス | MIT（コード）+ CC-BY-4.0（コンテンツ） | コードの再利用性とコンテンツの帰属表示を両立 |
 

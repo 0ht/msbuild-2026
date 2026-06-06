@@ -100,16 +100,115 @@ export function validateEntry(
       );
     }
   }
+
+  // Body-level depth checks (announcement only) — warnings, not errors
+  if (fm.content_type === 'announcement') {
+    const warnings = checkAnnouncementBody(entry.body, fp);
+    if (warnings.length > 0) {
+      entry._bodyWarnings = warnings;
+    }
+  }
 }
 
-/** Validate all entries. Throws on first error. */
+// ---------------------------------------------------------------------------
+// Announcement body depth validation (returns warnings, does not throw)
+// ---------------------------------------------------------------------------
+
+const REQUIRED_SECTIONS = [
+  '概要',
+  '主な発表',
+  '詳細',
+  '応用シナリオ',
+  '参考リンク',
+];
+
+/** Extract text between `## {heading}` and the next `## ` (or EOF). */
+function extractSection(body: string, heading: string): string | null {
+  const marker = `## ${heading}`;
+  const idx = body.indexOf(marker);
+  if (idx === -1) return null;
+  const start = body.indexOf('\n', idx);
+  if (start === -1) return '';
+  const nextSection = body.indexOf('\n## ', start);
+  return nextSection === -1
+    ? body.slice(start)
+    : body.slice(start, nextSection);
+}
+
+/** Count occurrences of a pattern inside a text block. */
+function countPattern(text: string, pattern: RegExp): number {
+  const matches = text.match(pattern);
+  return matches ? matches.length : 0;
+}
+
+function checkAnnouncementBody(body: string, fp: string): string[] {
+  const warnings: string[] = [];
+
+  // 1. Required sections
+  for (const section of REQUIRED_SECTIONS) {
+    if (!body.includes(`## ${section}`)) {
+      warnings.push(`${fp}: missing required section "## ${section}"`);
+    }
+  }
+
+  // 2. 「詳細」 must have ≥ 3 subsections (### headings)
+  const detailSection = extractSection(body, '詳細');
+  if (detailSection) {
+    const subCount = countPattern(detailSection, /^### /gm);
+    if (subCount < 3) {
+      warnings.push(`${fp}: "## 詳細" has ${subCount} subsections (### ), need ≥ 3`);
+    }
+  }
+
+  // 3. 「主な発表」 must have ≥ 3 items (- **…**)
+  const announcementsSection = extractSection(body, '主な発表');
+  if (announcementsSection) {
+    const itemCount = countPattern(announcementsSection, /^- \*\*/gm);
+    if (itemCount < 3) {
+      warnings.push(`${fp}: "## 主な発表" has ${itemCount} items (- **), need ≥ 3`);
+    }
+  }
+
+  // 4. 「応用シナリオ」 must have ≥ 3 items (- …)
+  const scenarioSection = extractSection(body, '応用シナリオ');
+  if (scenarioSection) {
+    const itemCount = countPattern(scenarioSection, /^- /gm);
+    if (itemCount < 3) {
+      warnings.push(`${fp}: "## 応用シナリオ" has ${itemCount} items, need ≥ 3`);
+    }
+  }
+
+  // 5. 「参考リンク」 must have ≥ 3 links (- […])
+  const refsSection = extractSection(body, '参考リンク');
+  if (refsSection) {
+    const linkCount = countPattern(refsSection, /^- \[/gm);
+    if (linkCount < 3) {
+      warnings.push(`${fp}: "## 参考リンク" has ${linkCount} links, need ≥ 3`);
+    }
+  }
+
+  // 6. Body must be ≥ 60 lines
+  const lineCount = body.split('\n').length;
+  if (lineCount < 60) {
+    warnings.push(`${fp}: body has ${lineCount} lines, need ≥ 60`);
+  }
+
+  return warnings;
+}
+
+/** Validate all entries. Throws on first error for frontmatter checks. */
 export function validateAllEntries(
   entries: ContentEntry[],
   tags: TagDef[],
   topics: TopicDef[],
   allowedDomains: string[],
-): void {
+): string[] {
+  const allWarnings: string[] = [];
   for (const entry of entries) {
     validateEntry(entry, tags, topics, allowedDomains);
+    if (entry._bodyWarnings) {
+      allWarnings.push(...entry._bodyWarnings);
+    }
   }
+  return allWarnings;
 }
