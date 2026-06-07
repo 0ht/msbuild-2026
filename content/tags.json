@@ -1,300 +1,360 @@
 [
-    {
-        "slug": "github-copilot",
-        "name": "GitHub Copilot",
-        "aka": [
-            "ghcp",
-            "copilot-chat",
-            "copilot-agent-mode"
-        ]
-    },
-    {
-        "slug": "azure-devops",
-        "name": "Azure DevOps",
-        "aka": [
-            "ado",
-            "azure-boards",
-            "azure-pipelines",
-            "azure-repos",
-            "azure-test-plans"
-        ]
-    },
-    {
-        "slug": "github-copilot-app",
-        "name": "GitHub Copilot App",
-        "aka": []
-    },
-    {
-        "slug": "github-copilot-sdk",
-        "name": "GitHub Copilot SDK",
-        "aka": [
-            "copilot-sdk"
-        ]
-    },
-    {
-        "slug": "github-actions",
-        "name": "GitHub Actions",
-        "aka": [
-            "gha"
-        ]
-    },
-    {
-        "slug": "github-code-security",
-        "name": "GitHub Code Security",
-        "aka": [
-            "ghas",
-            "advanced-security"
-        ]
-    },
-    {
-        "slug": "m365-copilot",
-        "name": "Microsoft 365 Copilot",
-        "aka": [
-            "copilot-m365"
-        ]
-    },
-    {
-        "slug": "azure-ai-foundry",
-        "name": "Azure AI Foundry",
-        "aka": [
-            "foundry",
-            "microsoft-foundry"
-        ]
-    },
-    {
-        "slug": "foundry-local",
-        "name": "Foundry Local",
-        "aka": []
-    },
-    {
-        "slug": "azure-cosmos-db",
-        "name": "Azure Cosmos DB",
-        "aka": [
-            "cosmos-db"
-        ]
-    },
-    {
-        "slug": "azure-functions",
-        "name": "Azure Functions",
-        "aka": []
-    },
-    {
-        "slug": "azure-container-apps",
-        "name": "Azure Container Apps",
-        "aka": [
-            "aca"
-        ]
-    },
-    {
-        "slug": "azure-kubernetes-service",
-        "name": "Azure Kubernetes Service",
-        "aka": [
-            "aks"
-        ]
-    },
-    {
-        "slug": "azure-sre-agent",
-        "name": "Azure SRE Agent",
-        "aka": [
-            "sre-agent"
-        ]
-    },
-    {
-        "slug": "azure-sql",
-        "name": "Azure SQL",
-        "aka": []
-    },
-    {
-        "slug": "azure-horizondb",
-        "name": "Azure HorizonDB",
-        "aka": [
-            "horizondb"
-        ]
-    },
-    {
-        "slug": "microsoft-fabric",
-        "name": "Microsoft Fabric",
-        "aka": [
-            "fabric"
-        ]
-    },
-    {
-        "slug": "dotnet",
-        "name": ".NET",
-        "aka": [
-            "dotnet-aspire",
-            "aspire"
-        ]
-    },
-    {
-        "slug": "visual-studio",
-        "name": "Visual Studio",
-        "aka": [
-            "vs"
-        ]
-    },
-    {
-        "slug": "vs-code",
-        "name": "Visual Studio Code",
-        "aka": [
-            "vscode"
-        ]
-    },
-    {
-        "slug": "windows-dev",
-        "name": "Windows Development",
-        "aka": [
-            "windows",
-            "win32",
-            "winui"
-        ]
-    },
-    {
-        "slug": "microsoft-entra",
-        "name": "Microsoft Entra",
-        "aka": [
-            "entra-id",
-            "azure-ad"
-        ]
-    },
-    {
-        "slug": "mcp",
-        "name": "Model Context Protocol",
-        "aka": []
-    },
-    {
-        "slug": "agent-framework",
-        "name": "Microsoft Agent Framework",
-        "aka": []
-    },
-    {
-        "slug": "rayfin",
-        "name": "Rayfin",
-        "aka": []
-    },
-    {
-        "slug": "microsoft-scout",
-        "name": "Microsoft Scout",
-        "aka": [
-            "scout"
-        ]
-    },
-    {
-        "slug": "microsoft-discovery",
-        "name": "Microsoft Discovery",
-        "aka": [
-            "discovery"
-        ]
-    },
-    {
-        "slug": "azure-app-service",
-        "name": "Azure App Service",
-        "aka": [
-            "app-service"
-        ]
-    },
-    {
-        "slug": "azure-api-management",
-        "name": "Azure API Management",
-        "aka": [
-            "apim"
-        ]
-    },
-    {
-        "slug": "azure-logic-apps",
-        "name": "Azure Logic Apps",
-        "aka": [
-            "logic-apps"
-        ]
-    },
-    {
-        "slug": "azure-managed-redis",
-        "name": "Azure Managed Redis",
-        "aka": [
-            "redis"
-        ]
-    },
-    {
-        "slug": "microsoft-quantum",
-        "name": "Microsoft Quantum",
-        "aka": [
-            "majorana",
-            "quantum"
-        ]
-    },
-    {
-        "slug": "azure-compute",
-        "name": "Azure Compute",
-        "aka": [
-            "azure-vm",
-            "cobalt"
-        ]
-    },
-    {
-        "slug": "windows-365",
-        "name": "Windows 365",
-        "aka": [
-            "cloud-pc"
-        ]
-    },
-    {
-        "slug": "microsoft-teams",
-        "name": "Microsoft Teams",
-        "aka": [
-            "teams"
-        ]
-    },
-    {
-        "slug": "microsoft-iq",
-        "name": "Microsoft IQ",
-        "aka": [
-            "work-iq",
-            "web-iq",
-            "fabric-iq"
-        ]
-    },
-    {
-        "slug": "surface",
-        "name": "Surface",
-        "aka": [
-            "surface-rtx-spark"
-        ]
-    },
-    {
-        "slug": "wsl",
-        "name": "Windows Subsystem for Linux",
-        "aka": [
-            "wslc",
-            "wsl-containers",
-            "wsl-io"
-        ]
-    },
-    {
-        "slug": "intelligent-terminal",
-        "name": "Intelligent Terminal",
-        "aka": []
-    },
-    {
-        "slug": "windows-ai",
-        "name": "Windows AI",
-        "aka": [
-            "aion",
-            "windows-ai-apis"
-        ]
-    },
-    {
-        "slug": "azure-databricks",
-        "name": "Azure Databricks",
-        "aka": [
-            "databricks",
-            "genie-spaces"
-        ]
-    },
-    {
-        "slug": "copilot-studio",
-        "name": "Microsoft Copilot Studio",
-        "aka": [
-            "agent-builder"
-        ]
-    }
+  {
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "aka": [
+      "ghcp",
+      "copilot-chat",
+      "copilot-agent-mode"
+    ]
+  },
+  {
+    "slug": "azure-devops",
+    "name": "Azure DevOps",
+    "aka": [
+      "ado",
+      "azure-boards",
+      "azure-pipelines",
+      "azure-repos",
+      "azure-test-plans"
+    ]
+  },
+  {
+    "slug": "github-copilot-app",
+    "name": "GitHub Copilot App",
+    "aka": []
+  },
+  {
+    "slug": "github-copilot-sdk",
+    "name": "GitHub Copilot SDK",
+    "aka": [
+      "copilot-sdk"
+    ]
+  },
+  {
+    "slug": "github-actions",
+    "name": "GitHub Actions",
+    "aka": [
+      "gha"
+    ]
+  },
+  {
+    "slug": "github-code-security",
+    "name": "GitHub Code Security",
+    "aka": [
+      "ghas",
+      "advanced-security"
+    ]
+  },
+  {
+    "slug": "m365-copilot",
+    "name": "Microsoft 365 Copilot",
+    "aka": [
+      "copilot-m365"
+    ]
+  },
+  {
+    "slug": "azure-ai-foundry",
+    "name": "Azure AI Foundry",
+    "aka": [
+      "foundry",
+      "microsoft-foundry"
+    ]
+  },
+  {
+    "slug": "foundry-local",
+    "name": "Foundry Local",
+    "aka": []
+  },
+  {
+    "slug": "azure-cosmos-db",
+    "name": "Azure Cosmos DB",
+    "aka": [
+      "cosmos-db"
+    ]
+  },
+  {
+    "slug": "azure-functions",
+    "name": "Azure Functions",
+    "aka": []
+  },
+  {
+    "slug": "azure-container-apps",
+    "name": "Azure Container Apps",
+    "aka": [
+      "aca"
+    ]
+  },
+  {
+    "slug": "azure-kubernetes-service",
+    "name": "Azure Kubernetes Service",
+    "aka": [
+      "aks"
+    ]
+  },
+  {
+    "slug": "azure-sre-agent",
+    "name": "Azure SRE Agent",
+    "aka": [
+      "sre-agent"
+    ]
+  },
+  {
+    "slug": "azure-sql",
+    "name": "Azure SQL",
+    "aka": []
+  },
+  {
+    "slug": "azure-horizondb",
+    "name": "Azure HorizonDB",
+    "aka": [
+      "horizondb"
+    ]
+  },
+  {
+    "slug": "microsoft-fabric",
+    "name": "Microsoft Fabric",
+    "aka": [
+      "fabric"
+    ]
+  },
+  {
+    "slug": "dotnet",
+    "name": ".NET",
+    "aka": [
+      "dotnet-aspire",
+      "aspire"
+    ]
+  },
+  {
+    "slug": "visual-studio",
+    "name": "Visual Studio",
+    "aka": [
+      "vs"
+    ]
+  },
+  {
+    "slug": "vs-code",
+    "name": "Visual Studio Code",
+    "aka": [
+      "vscode"
+    ]
+  },
+  {
+    "slug": "windows-dev",
+    "name": "Windows Development",
+    "aka": [
+      "windows",
+      "win32",
+      "winui"
+    ]
+  },
+  {
+    "slug": "microsoft-entra",
+    "name": "Microsoft Entra",
+    "aka": [
+      "entra-id",
+      "azure-ad"
+    ]
+  },
+  {
+    "slug": "mcp",
+    "name": "Model Context Protocol",
+    "aka": []
+  },
+  {
+    "slug": "agent-framework",
+    "name": "Microsoft Agent Framework",
+    "aka": []
+  },
+  {
+    "slug": "rayfin",
+    "name": "Rayfin",
+    "aka": []
+  },
+  {
+    "slug": "microsoft-scout",
+    "name": "Microsoft Scout",
+    "aka": [
+      "scout"
+    ]
+  },
+  {
+    "slug": "microsoft-discovery",
+    "name": "Microsoft Discovery",
+    "aka": [
+      "discovery"
+    ]
+  },
+  {
+    "slug": "azure-app-service",
+    "name": "Azure App Service",
+    "aka": [
+      "app-service"
+    ]
+  },
+  {
+    "slug": "azure-api-management",
+    "name": "Azure API Management",
+    "aka": [
+      "apim"
+    ]
+  },
+  {
+    "slug": "azure-logic-apps",
+    "name": "Azure Logic Apps",
+    "aka": [
+      "logic-apps"
+    ]
+  },
+  {
+    "slug": "azure-managed-redis",
+    "name": "Azure Managed Redis",
+    "aka": [
+      "redis"
+    ]
+  },
+  {
+    "slug": "microsoft-quantum",
+    "name": "Microsoft Quantum",
+    "aka": [
+      "majorana",
+      "quantum"
+    ]
+  },
+  {
+    "slug": "azure-compute",
+    "name": "Azure Compute",
+    "aka": [
+      "azure-vm",
+      "cobalt",
+      "maia",
+      "azure-boost",
+      "fairwater"
+    ]
+  },
+  {
+    "slug": "windows-365",
+    "name": "Windows 365",
+    "aka": [
+      "cloud-pc"
+    ]
+  },
+  {
+    "slug": "microsoft-teams",
+    "name": "Microsoft Teams",
+    "aka": [
+      "teams"
+    ]
+  },
+  {
+    "slug": "microsoft-iq",
+    "name": "Microsoft IQ",
+    "aka": [
+      "work-iq",
+      "web-iq",
+      "fabric-iq"
+    ]
+  },
+  {
+    "slug": "surface",
+    "name": "Surface",
+    "aka": [
+      "surface-rtx-spark"
+    ]
+  },
+  {
+    "slug": "wsl",
+    "name": "Windows Subsystem for Linux",
+    "aka": [
+      "wslc",
+      "wsl-containers",
+      "wsl-io"
+    ]
+  },
+  {
+    "slug": "intelligent-terminal",
+    "name": "Intelligent Terminal",
+    "aka": []
+  },
+  {
+    "slug": "windows-ai",
+    "name": "Windows AI",
+    "aka": [
+      "aion",
+      "windows-ai-apis"
+    ]
+  },
+  {
+    "slug": "azure-databricks",
+    "name": "Azure Databricks",
+    "aka": [
+      "databricks",
+      "genie-spaces"
+    ]
+  },
+  {
+    "slug": "copilot-studio",
+    "name": "Microsoft Copilot Studio",
+    "aka": [
+      "agent-builder"
+    ]
+  },
+  {
+    "slug": "azure-linux",
+    "name": "Azure Linux",
+    "aka": [
+      "azurelinux",
+      "cbl-mariner",
+      "mariner"
+    ]
+  },
+  {
+    "slug": "azure-container-linux",
+    "name": "Azure Container Linux",
+    "aka": [
+      "acl",
+      "flatcar"
+    ]
+  },
+  {
+    "slug": "azure-monitor",
+    "name": "Azure Monitor",
+    "aka": [
+      "application-insights",
+      "log-analytics"
+    ]
+  },
+  {
+    "slug": "azure-postgresql",
+    "name": "Azure Database for PostgreSQL",
+    "aka": [
+      "postgresql",
+      "postgres"
+    ]
+  },
+  {
+    "slug": "azure-speech",
+    "name": "Azure Speech",
+    "aka": [
+      "speech-to-text",
+      "text-to-speech",
+      "voice-live"
+    ]
+  },
+  {
+    "slug": "agent-365",
+    "name": "Agent 365",
+    "aka": [
+      "agent365"
+    ]
+  },
+  {
+    "slug": "mai-models",
+    "name": "MAI Models",
+    "aka": [
+      "microsoft-ai-models",
+      "mai"
+    ]
+  }
 ]
