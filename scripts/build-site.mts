@@ -19,15 +19,14 @@ import {
   cleanDir,
   writeFile,
 } from './lib/content.mjs';
-import { DEFAULT_DELIVERIES } from './lib/types.mjs';
+import { resolveDeliveries } from './lib/types.mjs';
 import { validateAllEntries } from './lib/validate.mjs';
 import type { ContentEntry, TopicDef, TagDef } from './lib/types.mjs';
 
 const SITE_DIR = path.resolve(import.meta.dirname, '../site');
 
 function shouldBuildSite(entry: ContentEntry): boolean {
-  const d = entry.frontmatter.deliveries ?? DEFAULT_DELIVERIES;
-  return d.site;
+  return resolveDeliveries(entry.frontmatter.deliveries).site;
 }
 
 /** Convert a content entry to a VitePress-compatible markdown page */
@@ -116,6 +115,9 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
   const announcements = siteEntries.filter(
     (e) => e.frontmatter.content_type === 'announcement',
   );
+  const sessions = siteEntries.filter(
+    (e) => e.frontmatter.content_type === 'session',
+  );
 
   const lines = [
     '---',
@@ -128,6 +130,9 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
     '    - theme: brand',
     '      text: アナウンス一覧',
     '      link: /announcements/',
+    '    - theme: alt',
+    '      text: セッション一覧',
+    '      link: /sessions/',
     '---',
     '',
     '## トピック別',
@@ -135,7 +140,7 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
   ];
 
   for (const topic of topics) {
-    const count = announcements.filter(
+    const count = siteEntries.filter(
       (e) => e.frontmatter.topic === topic.slug,
     ).length;
     if (count > 0) {
@@ -150,6 +155,20 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
   for (const e of announcements.slice(0, 10)) {
     const link = `/${e.relativePath.replace(/\.md$/, '')}`;
     lines.push(`- [${e.frontmatter.title}](${link})`);
+  }
+
+  lines.push('');
+  lines.push('## セッション');
+  lines.push('');
+
+  for (const e of sessions.slice(0, 10)) {
+    const link = `/${e.relativePath.replace(/\.md$/, '')}`;
+    lines.push(`- [${e.frontmatter.title}](${link})`);
+  }
+
+  if (sessions.length > 10) {
+    lines.push('');
+    lines.push(`[…全${sessions.length}件を見る](/sessions/)`);
   }
 
   lines.push('');
@@ -171,6 +190,7 @@ function buildNavJson(entries: ContentEntry[], topics: TopicDef[]) {
       items: topicItems,
     },
     { text: 'アナウンス', link: '/announcements/' },
+    { text: 'セッション', link: '/sessions/' },
   ];
 
   const sidebar: Record<
@@ -186,6 +206,20 @@ function buildNavJson(entries: ContentEntry[], topics: TopicDef[]) {
     {
       text: 'アナウンス',
       items: announcements.map((e) => ({
+        text: e.frontmatter.title,
+        link: `/${e.relativePath.replace(/\.md$/, '')}`,
+      })),
+    },
+  ];
+
+  // Sessions sidebar
+  const sessions = siteEntries.filter(
+    (e) => e.frontmatter.content_type === 'session',
+  );
+  sidebar['/sessions/'] = [
+    {
+      text: 'セッション',
+      items: sessions.map((e) => ({
         text: e.frontmatter.title,
         link: `/${e.relativePath.replace(/\.md$/, '')}`,
       })),
@@ -263,7 +297,25 @@ const announcementsIndex = [
 ].join('\n');
 writeFile(path.join(SITE_DIR, 'announcements', 'index.md'), announcementsIndex);
 
-// 6. Nav JSON
+// 6. Sessions index
+const sessionEntries = entries.filter(
+  (e) => e.frontmatter.content_type === 'session' && shouldBuildSite(e),
+);
+const sessionsIndex = [
+  '---',
+  'title: セッション一覧',
+  '---',
+  '',
+  '# セッション一覧',
+  '',
+  ...sessionEntries.map((e) => {
+    const link = `/${e.relativePath.replace(/\.md$/, '')}`;
+    return `## [${e.frontmatter.title}](${link})\n\n${e.frontmatter.summary}\n`;
+  }),
+].join('\n');
+writeFile(path.join(SITE_DIR, 'sessions', 'index.md'), sessionsIndex);
+
+// 7. Nav JSON
 const navData = buildNavJson(entries, topics);
 writeFile(
   path.join(SITE_DIR, '.vitepress', 'nav.json'),

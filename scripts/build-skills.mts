@@ -12,15 +12,14 @@ import {
   cleanDir,
   writeFile,
 } from './lib/content.mjs';
-import { DEFAULT_DELIVERIES } from './lib/types.mjs';
+import { resolveDeliveries } from './lib/types.mjs';
 import type { ContentEntry, TopicDef } from './lib/types.mjs';
 
 const SKILLS_DIR = path.resolve(import.meta.dirname, '../skills');
 const ROOT_DIR = path.resolve(import.meta.dirname, '..');
 
 function shouldBuildSkills(entry: ContentEntry): boolean {
-  const d = entry.frontmatter.deliveries ?? DEFAULT_DELIVERIES;
-  return d.skills;
+  return resolveDeliveries(entry.frontmatter.deliveries).skills;
 }
 
 /** Build the hub SKILL.md */

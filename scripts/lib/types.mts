@@ -16,7 +16,7 @@ export interface Frontmatter {
   content_type: ContentType;
   topic: string;
   official_sources: string[];
-  deliveries?: Deliveries;
+  deliveries?: Partial<Deliveries>;
 }
 
 export interface ContentEntry {
@@ -54,3 +54,8 @@ export const DEFAULT_DELIVERIES: Deliveries = {
   llms: true,
   skills: true,
 };
+
+/** Merge partial deliveries with defaults. Missing keys default to true. */
+export function resolveDeliveries(partial?: Partial<Deliveries>): Deliveries {
+  return { ...DEFAULT_DELIVERIES, ...partial };
+}

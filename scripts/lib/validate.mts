@@ -5,6 +5,7 @@
  */
 
 import type { ContentEntry, ContentType, TagDef, TopicDef } from './types.mjs';
+import { resolveDeliveries } from './types.mjs';
 
 const VALID_CONTENT_TYPES: ContentType[] = [
   'announcement',
@@ -296,7 +297,7 @@ export function checkCrossLinks(entries: ContentEntry[]): string[] {
   // Build set of relativePaths for entries with site: true
   const siteEntryPaths = new Set(
     entries
-      .filter((e) => e.frontmatter.deliveries?.site)
+      .filter((e) => resolveDeliveries(e.frontmatter.deliveries).site)
       .map((e) => e.relativePath),
   );
 
@@ -304,7 +305,7 @@ export function checkCrossLinks(entries: ContentEntry[]): string[] {
 
   for (const entry of entries) {
     // Only check entries that are delivered to the site
-    if (!entry.frontmatter.deliveries?.site) continue;
+    if (!resolveDeliveries(entry.frontmatter.deliveries).site) continue;
 
     const dir = entry.relativePath.replace(/\/[^/]+$/, '');
 
