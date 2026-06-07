@@ -5,6 +5,9 @@ site/.vitepress/cache/
 site/.vitepress/dist/
 public/
 
+# Local source cache (copyrighted materials — do not commit)
+.cache/
+
 # Keep VitePress config (hand-written)
 !site/.vitepress/config.ts
 

@@ -108,6 +108,14 @@ export function validateEntry(
       entry._bodyWarnings = warnings;
     }
   }
+
+  // Body-level depth checks (session only) — warnings, not errors
+  if (fm.content_type === 'session') {
+    const warnings = checkSessionBody(entry.body, fp);
+    if (warnings.length > 0) {
+      entry._bodyWarnings = warnings;
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -196,6 +204,64 @@ function checkAnnouncementBody(body: string, fp: string): string[] {
   return warnings;
 }
 
+// ---------------------------------------------------------------------------
+// Session body depth validation (returns warnings, does not throw)
+// ---------------------------------------------------------------------------
+
+const SESSION_REQUIRED_SECTIONS = [
+  'セッション情報',
+  '概要',
+  'キーポイント',
+  '詳細',
+  '参考リンク',
+];
+
+function checkSessionBody(body: string, fp: string): string[] {
+  const warnings: string[] = [];
+
+  // 1. Required sections
+  for (const section of SESSION_REQUIRED_SECTIONS) {
+    if (!body.includes(`## ${section}`)) {
+      warnings.push(`${fp}: missing required section "## ${section}"`);
+    }
+  }
+
+  // 2. 「キーポイント」 must have ≥ 3 items (numbered list)
+  const keypointsSection = extractSection(body, 'キーポイント');
+  if (keypointsSection) {
+    const itemCount = countPattern(keypointsSection, /^\d+\. /gm);
+    if (itemCount < 3) {
+      warnings.push(`${fp}: "## キーポイント" has ${itemCount} items, need ≥ 3`);
+    }
+  }
+
+  // 3. 「詳細」 must have ≥ 2 subsections (### headings)
+  const detailSection = extractSection(body, '詳細');
+  if (detailSection) {
+    const subCount = countPattern(detailSection, /^### /gm);
+    if (subCount < 2) {
+      warnings.push(`${fp}: "## 詳細" has ${subCount} subsections (###), need ≥ 2`);
+    }
+  }
+
+  // 4. 「参考リンク」 must have ≥ 3 links (- […])
+  const refsSection = extractSection(body, '参考リンク');
+  if (refsSection) {
+    const linkCount = countPattern(refsSection, /^- \[/gm);
+    if (linkCount < 3) {
+      warnings.push(`${fp}: "## 参考リンク" has ${linkCount} links, need ≥ 3`);
+    }
+  }
+
+  // 5. Body must be ≥ 40 lines
+  const lineCount = body.split('\n').length;
+  if (lineCount < 40) {
+    warnings.push(`${fp}: body has ${lineCount} lines, need ≥ 40`);
+  }
+
+  return warnings;
+}
+
 /** Validate all entries. Throws on first error for frontmatter checks. */
 export function validateAllEntries(
   entries: ContentEntry[],
@@ -211,4 +277,135 @@ export function validateAllEntries(
     }
   }
   return allWarnings;
+}
+
+// ---------------------------------------------------------------------------
+// Reference link liveness check (optional, network-dependent)
+// Results cached in .cache/link-check.json with 24h TTL.
+// ---------------------------------------------------------------------------
+
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+const LINK_CACHE_PATH = resolve('.cache/link-check.json');
+const LINK_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
+
+interface LinkCacheEntry {
+  status: number | null; // null = unreachable
+  method: string; // HTTP method used (e.g. 'HEAD', 'GET')
+  error?: string;
+  checkedAt: number; // epoch ms
+}
+
+type LinkCache = Record<string, LinkCacheEntry>;
+
+function loadLinkCache(): LinkCache {
+  try {
+    return JSON.parse(readFileSync(LINK_CACHE_PATH, 'utf-8'));
+  } catch {
+    return {};
+  }
+}
+
+function saveLinkCache(cache: LinkCache): void {
+  mkdirSync(resolve('.cache'), { recursive: true });
+  writeFileSync(LINK_CACHE_PATH, JSON.stringify(cache, null, 2));
+}
+
+/** Extract all URLs from 「参考リンク」 sections across all entries */
+function extractReferenceLinks(entries: ContentEntry[]): { fp: string; url: string }[] {
+  const links: { fp: string; url: string }[] = [];
+  for (const entry of entries) {
+    const refsSection = extractSection(entry.body, '参考リンク');
+    if (!refsSection) continue;
+    const urlMatches = refsSection.matchAll(/\]\((https?:\/\/[^)]+)\)/g);
+    for (const m of urlMatches) {
+      links.push({ fp: entry.relativePath, url: m[1] });
+    }
+  }
+  return links;
+}
+
+/** Check that reference links return 2XX or 3XX. Returns warnings for dead links. */
+export async function checkLinksLiveness(entries: ContentEntry[]): Promise<string[]> {
+  const links = extractReferenceLinks(entries);
+  const warnings: string[] = [];
+  const seen = new Set<string>();
+  const cache = loadLinkCache();
+  const now = Date.now();
+  let cacheHits = 0;
+
+  for (const { fp, url } of links) {
+    if (seen.has(url)) continue;
+    seen.add(url);
+
+    // Use cached result if fresh
+    const cached = cache[url];
+    if (cached && (now - cached.checkedAt) < LINK_CACHE_TTL_MS) {
+      cacheHits++;
+      if (cached.status === null) {
+        warnings.push(`${fp}: unreachable link (${cached.error}) — ${url}`);
+      } else if (cached.status >= 400) {
+        warnings.push(`${fp}: dead link (${cached.status}) — ${url}`);
+      }
+      continue;
+    }
+
+    // Fetch: try HEAD first, fallback to GET on 4xx
+    let status: number | null = null;
+    let method = 'HEAD';
+    let errorMsg: string | undefined;
+
+    try {
+      const res = await fetch(url, {
+        method: 'HEAD',
+        redirect: 'follow',
+        signal: AbortSignal.timeout(10_000),
+      });
+      status = res.status;
+
+      // Fallback to GET if HEAD returns 4xx (some sites block HEAD)
+      if (status >= 400) {
+        method = 'GET';
+        const getRes = await fetch(url, {
+          method: 'GET',
+          redirect: 'follow',
+          signal: AbortSignal.timeout(10_000),
+        });
+        status = getRes.status;
+        // Discard body to release connection
+        await getRes.body?.cancel();
+      }
+    } catch (err: unknown) {
+      // If HEAD threw (connection reset, timeout), try GET as fallback
+      try {
+        method = 'GET';
+        const getRes = await fetch(url, {
+          method: 'GET',
+          redirect: 'follow',
+          signal: AbortSignal.timeout(10_000),
+        });
+        status = getRes.status;
+        await getRes.body?.cancel();
+      } catch (getErr: unknown) {
+        errorMsg = getErr instanceof Error ? getErr.message : 'unknown error';
+      }
+    }
+
+    if (errorMsg) {
+      cache[url] = { status: null, method, error: errorMsg, checkedAt: now };
+      warnings.push(`${fp}: unreachable link (${errorMsg}) — ${url}`);
+    } else {
+      cache[url] = { status, method, checkedAt: now };
+      if (status !== null && status >= 400) {
+        warnings.push(`${fp}: dead link (${status}) — ${url}`);
+      }
+    }
+  }
+
+  saveLinkCache(cache);
+  if (cacheHits > 0) {
+    console.log(`[validate] Link cache: ${cacheHits} hits, ${seen.size - cacheHits} fetched`);
+  }
+  return warnings;
 }

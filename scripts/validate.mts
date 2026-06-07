@@ -3,6 +3,9 @@
  * validate.mts
  * Standalone validation runner. Exits with code 1 on any validation error.
  * Used by pre-commit hook and CI.
+ *
+ * Flags:
+ *   --check-links  Also check that reference links return 2XX/3XX (slow, network-dependent)
  */
 
 import {
@@ -11,7 +14,9 @@ import {
   loadTopics,
   loadAllowedDomains,
 } from './lib/content.mjs';
-import { validateAllEntries } from './lib/validate.mjs';
+import { validateAllEntries, checkLinksLiveness } from './lib/validate.mjs';
+
+const checkLinks = process.argv.includes('--check-links');
 
 const entries = loadContentEntries();
 const tags = loadTags();
@@ -27,6 +32,19 @@ try {
     }
   }
   console.log(`[validate] ${entries.length} entries — frontmatter OK`);
+
+  if (checkLinks) {
+    console.log('[validate] Checking reference link liveness...');
+    const linkWarnings = await checkLinksLiveness(entries);
+    if (linkWarnings.length > 0) {
+      console.warn(`[validate] ${linkWarnings.length} dead links:`);
+      for (const w of linkWarnings) {
+        console.warn(`  ⚠ ${w}`);
+      }
+    } else {
+      console.log('[validate] All reference links alive');
+    }
+  }
 } catch (err: unknown) {
   console.error((err as Error).message);
   process.exit(1);

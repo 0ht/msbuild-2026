@@ -9,6 +9,17 @@
         ]
     },
     {
+        "slug": "azure-devops",
+        "name": "Azure DevOps",
+        "aka": [
+            "ado",
+            "azure-boards",
+            "azure-pipelines",
+            "azure-repos",
+            "azure-test-plans"
+        ]
+    },
+    {
         "slug": "github-copilot-app",
         "name": "GitHub Copilot App",
         "aka": []

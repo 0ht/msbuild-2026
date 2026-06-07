@@ -15,10 +15,19 @@ Microsoft Build 2026 の発表情報を集約したナレッジベース。
 2. **必ずソースを引用** すべてのコンテンツは `official_sources` に少なくとも 1 つの一次ソース URL を持つ。
 3. **1 製品/サービスにつき 1 ファイル** エントリは焦点を絞り、サイトとエージェントが必要な部分だけロードできるようにする。
 4. **生成物は手で編集しない:** `site/`、`public/`、`skills/` はビルドスクリプトの出力物。`skills/` は CI が自動コミットする。手動でのビルド・コミットは不要。
+5. **ソースキャッシュを活用** セッションコンテンツ作成時は `.cache/sessions/{session-code}/` に字幕・スライド等の一次素材をローカル保存して参照する。著作権物のためリポジトリにはコミットしない（`.gitignore` 対象）。
 
-## エージェント
+## エージェントとスキル
 
-コンテンツの調査・生成には [`.github/agents/researcher.agent.md`](.github/agents/researcher.agent.md) を使用する。エージェント定義には調査ワークフロー（ツールの使い分け、ソース探索深度、例外ハンドリング）が定義されている。コンテンツ規約（品質基準、引用ポリシー、文体等）は `docs/content-guide.md` に集約されており、エージェントはそちらを参照する。
+コンテンツの調査・生成には [`.github/agents/researcher.agent.md`](.github/agents/researcher.agent.md) を使用する。エージェントは以下の 3 スキルを組み合わせて作業する:
+
+| スキル | 責務 | 場所 |
+|--------|------|------|
+| `research` | 調査方法論（ツール使い分け、ソース探索深さ、例外ハンドリング、バリデーション） | `.github/skills/research/` |
+| `announcement-summary` | `content/announcements/*.md` の作成・更新 | `.github/skills/announcement-summary/` |
+| `session-summary` | `content/sessions/*.md` の作成・更新 | `.github/skills/session-summary/` |
+
+コンテンツ規約（品質基準、引用ポリシー、文体等）は `docs/content-guide.md` に集約されており、エージェント・スキルはそちらを参照する。
 
 ## コンテンツ規約
 
