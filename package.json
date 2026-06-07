@@ -13,6 +13,7 @@
         "dev": "npm run build:content && vitepress dev site",
         "preview": "npm run build && vitepress preview site",
         "validate": "tsx scripts/validate.mts",
+        "check-url": "node scripts/check-url.mjs",
         "prepare": "git config core.hooksPath .githooks"
     },
     "devDependencies": {

@@ -59,9 +59,9 @@ curl -sL "{PDF URL}" -o .cache/sessions/{CODE}/transcript.pdf
 pdftotext -layout .cache/sessions/{CODE}/transcript.pdf .cache/sessions/{CODE}/transcript.txt
 ```
 
-### Step 3: スライドデッキ取得と読解（存在する場合）
+### Step 3: スライドデッキ取得
 
-`meta.json` の `slideDeck` が空でなければ**必ず取得する**。スライドにはトランスクリプトにない構造化情報が含まれるため、スキップしてはならない。
+**MUST**: `meta.json` の `slideDeck` が空でなければ**必ず取得する**。これは、スライドにはトランスクリプトにない情報が含まれるため。
 
 #### ダウンロード
 

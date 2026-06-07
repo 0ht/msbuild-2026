@@ -26,6 +26,11 @@ Build 2026 の個別発表・新機能を調査し、`content/announcements/{id}
 調査対象の製品・サービスを特定し、以下を確認:
 - `content/announcements/` に既存エントリがないか（重複防止）
 - `content/tags.json` に適切なタグがあるか（なければ追加を検討）
+- ソース URL が既にカバー済みでないかを確認:
+  ```bash
+  node scripts/check-url.mjs "<ソースURL>"
+  ```
+  `✓` が返る場合はそのエントリに情報追記を検討。`✗` が返る場合は新規エントリ候補。
 
 ### Step 2: 調査
 
