@@ -29,18 +29,49 @@ function shouldBuildSite(entry: ContentEntry): boolean {
   return resolveDeliveries(entry.frontmatter.deliveries).site;
 }
 
+/** Display title for sessions includes the uppercased ID prefix */
+function displayTitle(entry: ContentEntry): string {
+  if (entry.frontmatter.content_type === 'session') {
+    return `${entry.frontmatter.id.toUpperCase()}: ${entry.frontmatter.title}`;
+  }
+  return entry.frontmatter.title;
+}
+
+/** Sort sessions: keynotes first, then by ID */
+function sortSessions(sessions: ContentEntry[]): ContentEntry[] {
+  return [...sessions].sort((a, b) => {
+    const aKey = a.frontmatter.id.startsWith('key') ? 0 : 1;
+    const bKey = b.frontmatter.id.startsWith('key') ? 0 : 1;
+    if (aKey !== bKey) return aKey - bKey;
+    return a.frontmatter.id.localeCompare(b.frontmatter.id);
+  });
+}
+
+/** Format tags as inline badge links */
+function formatTags(entry: ContentEntry, tags: TagDef[]): string {
+  return entry.frontmatter.tags
+    .map((slug) => {
+      const tag = tags.find((t) => t.slug === slug);
+      const name = tag ? tag.name : slug;
+      return `[\`${name}\`](/tags/${slug})`;
+    })
+    .join(' ');
+}
+
 /** Convert a content entry to a VitePress-compatible markdown page */
 function buildPage(entry: ContentEntry): string {
   const fm = entry.frontmatter;
+  const title = displayTitle(entry);
   const escYaml = (s: string) => s.replace(/"/g, '\\"').replace(/\n/g, ' ');
   const vpFrontmatter = [
     '---',
-    `title: "${escYaml(fm.title)}"`,
+    `title: "${escYaml(title)}"`,
     `description: "${escYaml(fm.summary)}"`,
     '---',
   ].join('\n');
 
-  return `${vpFrontmatter}\n\n# ${fm.title}\n\n${entry.body}\n`;
+  const tagLine = formatTags(entry, tags);
+  return `${vpFrontmatter}\n\n# ${title}\n\n${tagLine}\n\n${entry.body}\n`;
 }
 
 /** Generate a topic aggregation page */
@@ -66,7 +97,7 @@ function buildTopicPage(topic: TopicDef, entries: ContentEntry[]): string {
   } else {
     for (const e of matching) {
       const link = `/${e.relativePath.replace(/\.md$/, '')}`;
-      lines.push(`## [${e.frontmatter.title}](${link})`);
+      lines.push(`## [${displayTitle(e)}](${link})`);
       lines.push('');
       lines.push(e.frontmatter.summary);
       lines.push('');
@@ -100,7 +131,7 @@ function buildTagPage(tag: TagDef, entries: ContentEntry[]): string {
     for (const e of matching) {
       const link = `/${e.relativePath.replace(/\.md$/, '')}`;
       lines.push(
-        `- [${e.frontmatter.title}](${link}) — ${e.frontmatter.summary.split('\n')[0]}`,
+        `- [${displayTitle(e)}](${link}) — ${e.frontmatter.summary.split('\n')[0]}`,
       );
     }
     lines.push('');
@@ -115,9 +146,9 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
   const announcements = siteEntries.filter(
     (e) => e.frontmatter.content_type === 'announcement',
   );
-  const sessions = siteEntries.filter(
+  const sessions = sortSessions(siteEntries.filter(
     (e) => e.frontmatter.content_type === 'session',
-  );
+  ));
 
   const lines = [
     '---',
@@ -163,7 +194,7 @@ function buildIndexPage(entries: ContentEntry[], topics: TopicDef[]): string {
 
   for (const e of sessions.slice(0, 10)) {
     const link = `/${e.relativePath.replace(/\.md$/, '')}`;
-    lines.push(`- [${e.frontmatter.title}](${link})`);
+    lines.push(`- [${displayTitle(e)}](${link})`);
   }
 
   if (sessions.length > 10) {
@@ -191,6 +222,7 @@ function buildNavJson(entries: ContentEntry[], topics: TopicDef[]) {
     },
     { text: 'アナウンス', link: '/announcements/' },
     { text: 'セッション', link: '/sessions/' },
+    { text: 'タグ', link: '/tags/' },
   ];
 
   const sidebar: Record<
@@ -213,14 +245,14 @@ function buildNavJson(entries: ContentEntry[], topics: TopicDef[]) {
   ];
 
   // Sessions sidebar
-  const sessions = siteEntries.filter(
+  const sessions = sortSessions(siteEntries.filter(
     (e) => e.frontmatter.content_type === 'session',
-  );
+  ));
   sidebar['/sessions/'] = [
     {
       text: 'セッション',
       items: sessions.map((e) => ({
-        text: e.frontmatter.title,
+        text: displayTitle(e),
         link: `/${e.relativePath.replace(/\.md$/, '')}`,
       })),
     },
@@ -292,15 +324,16 @@ const announcementsIndex = [
   '',
   ...announcementEntries.map((e) => {
     const link = `/${e.relativePath.replace(/\.md$/, '')}`;
-    return `## [${e.frontmatter.title}](${link})\n\n${e.frontmatter.summary}\n`;
+    const tagLine = formatTags(e, tags);
+    return `## [${e.frontmatter.title}](${link})\n\n${tagLine}\n\n${e.frontmatter.summary}\n`;
   }),
 ].join('\n');
 writeFile(path.join(SITE_DIR, 'announcements', 'index.md'), announcementsIndex);
 
 // 6. Sessions index
-const sessionEntries = entries.filter(
+const sessionEntries = sortSessions(entries.filter(
   (e) => e.frontmatter.content_type === 'session' && shouldBuildSite(e),
-);
+));
 const sessionsIndex = [
   '---',
   'title: セッション一覧',
@@ -310,12 +343,34 @@ const sessionsIndex = [
   '',
   ...sessionEntries.map((e) => {
     const link = `/${e.relativePath.replace(/\.md$/, '')}`;
-    return `## [${e.frontmatter.title}](${link})\n\n${e.frontmatter.summary}\n`;
+    const tagLine = formatTags(e, tags);
+    return `## [${displayTitle(e)}](${link})\n\n${tagLine}\n\n${e.frontmatter.summary}\n`;
   }),
 ].join('\n');
 writeFile(path.join(SITE_DIR, 'sessions', 'index.md'), sessionsIndex);
 
-// 7. Nav JSON
+// 7. Tags index
+const tagsWithContent = tags.filter((tag) =>
+  entries.some((e) => e.frontmatter.tags.includes(tag.slug) && shouldBuildSite(e)),
+);
+const tagsIndex = [
+  '---',
+  'title: タグ一覧',
+  '---',
+  '',
+  '# タグ一覧',
+  '',
+  ...tagsWithContent.map((tag) => {
+    const count = entries.filter(
+      (e) => e.frontmatter.tags.includes(tag.slug) && shouldBuildSite(e),
+    ).length;
+    return `- [${tag.name}](/tags/${tag.slug}) (${count}件)`;
+  }),
+  '',
+].join('\n');
+writeFile(path.join(SITE_DIR, 'tags', 'index.md'), tagsIndex);
+
+// 8. Nav JSON
 const navData = buildNavJson(entries, topics);
 writeFile(
   path.join(SITE_DIR, '.vitepress', 'nav.json'),
