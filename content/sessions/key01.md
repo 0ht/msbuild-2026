@@ -12,6 +12,7 @@ tags:
 content_type: session
 topic: agents-and-apps
 official_sources:
+  - https://build.microsoft.com/en-US/sessions/KEY01
   - https://build.microsoft.com/en-US/speakers/1768245294609build26-1775670526436001p1Pd
   - https://news.microsoft.com/build-2026
   - https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work
