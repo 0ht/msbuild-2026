@@ -1,4 +1,4 @@
-# AI で楽してキャッチアップしたい人向けの Microsoft Build 2026 まとめ
+# Microsoft Build 2026 Skill
 
 2026 年 6 月 2 日 〜 3 日に開催された Microsoft の開発者向けカンファレンス「Build 2026」のアナウンスとセッション情報を、GitHub Copilot で調査・要約してキュレーションしたプロジェクトです。
 
