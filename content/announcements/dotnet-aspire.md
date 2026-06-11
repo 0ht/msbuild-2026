@@ -46,3 +46,7 @@ TypeScript 開発者が .NET SDK なしで Aspire のアプリモデルを利用
 - [Agentic development aspirations: build, run, observe](https://devblogs.microsoft.com/aspire/agentic-dev-aspirations)
 - [What's New in Aspire 13.3](https://devblogs.microsoft.com/aspire/whats-new-aspire-13-3)
 - [.NET Aspire ドキュメント](https://learn.microsoft.com/dotnet/aspire/)
+
+## 関連エントリ
+
+- [.NET 11](dotnet-11.md) — エージェンティック Web のビルディングブロックや AI Building Blocks との統合

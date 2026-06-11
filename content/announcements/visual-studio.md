@@ -49,3 +49,4 @@ Visual Studio の AI 統合基盤を GitHub Copilot SDK に統一。VS Code、CL
 - [What's Coming Next in Visual Studio: Our Microsoft Build 2026 Announcements](https://devblogs.microsoft.com/visualstudio/whats-coming-next-in-visual-studio-our-microsoft-build-2026-announcements)
 - [Azure MCP Server Now Built-In with Visual Studio 2026](https://devblogs.microsoft.com/visualstudio/azure-mcp-server-now-built-in-with-visual-studio-2026-a-new-era-for-agentic-workflows)
 - [GitHub, Copilot, VS Code, and More: Live from San Francisco（LIVE104）](https://build.microsoft.com)
+- [Build 2026 recap（developer.microsoft.com）](https://developer.microsoft.com/blog/build-recap)

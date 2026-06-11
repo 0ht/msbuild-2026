@@ -209,6 +209,7 @@ Voice Live は Foundry エージェントにリアルタイム音声対話を追
 - [Build agents you can trust — open evals and control standard](https://devblogs.microsoft.com/foundry/build-2026-open-trust-stack-ai-agents)
 - [Microsoft Agent Framework GitHub リポジトリ](https://github.com/microsoft/agent-framework)
 - [BRK241: From prototype to production — build and run agents at scale](https://build.microsoft.com/sessions/BRK241)
+- [Build 2026 recap（developer.microsoft.com）](https://developer.microsoft.com/blog/build-recap)
 
 ## 関連エントリ
 

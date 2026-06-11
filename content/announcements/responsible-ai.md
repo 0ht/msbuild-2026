@@ -54,3 +54,4 @@ Build 2026 で Microsoft は、AI エージェントの信頼性を確保する�
 - [Build agents you can trust across any framework with open evals and a control standard](https://devblogs.microsoft.com/foundry/build-2026-open-trust-stack-ai-agents)
 - [What's new in Microsoft Foundry | Build Edition](https://devblogs.microsoft.com/foundry/whats-new-in-microsoft-foundry-build-2026)
 - [ASSERT GitHub リポジトリ](https://github.com/microsoft/assert)
+- [Build 2026 recap（developer.microsoft.com）](https://developer.microsoft.com/blog/build-recap)
