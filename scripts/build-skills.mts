@@ -30,6 +30,13 @@ function buildSkillHub(entries: ContentEntry[], topics: TopicDef[]): string {
   const endDate = info.dates.end.split('-')[2];
   const eventDesc = `${info.event} (${startDate}-${endDate}, ${info.location.split(',')[0]})`;
 
+  const announcementCount = skillEntries.filter(
+    (e) => e.frontmatter.content_type === 'announcement',
+  ).length;
+  const sessionCount = skillEntries.filter(
+    (e) => e.frontmatter.content_type === 'session',
+  ).length;
+
   const lines: string[] = [
     '---',
     'name: msbuild-2026',
@@ -41,13 +48,46 @@ function buildSkillHub(entries: ContentEntry[], topics: TopicDef[]): string {
     `${eventDesc} の発表情報を集約したスキル。`,
     'アナウンス、セッション要約、リソースリンクを提供する。',
     '',
-    '各アナウンスの詳細は references/ 配下を参照。',
+    '## 公式ページ・まとめ',
+    '',
+    `- [Build 2026 ホームページ](${info.urls.homepage})`,
+    `- [Build 2026 ニュースハブ](${info.urls.news})`,
+    '- [Build 2026 recap: vision, launches, and top sessions](https://developer.microsoft.com/blog/build-recap)',
+    "- [AI alone won't change your business. The system running it will.](https://blogs.microsoft.com/blog/2026/06/02/ai-alone-wont-change-your-business-the-system-running-it-will/)",
+    '- [Build 2026 next steps](https://aka.ms/build26-next-steps)',
+    '- [Build 2026 全セッション playlist (YouTube)](https://www.youtube.com/playlist?list=PLlrxD0HtieHicIn65R7Oi_1nFXQr4SbtU)',
+    `- [セッションカタログ](${info.urls.sessionCatalog})`,
+    '',
+    '## コンテンツインデックス',
+    '',
+    `- [アナウンス一覧](references/announcements.md) (${announcementCount} 件)`,
+    `- [セッション一覧](references/sessions.md) (${sessionCount} 件)`,
+    '',
+    '各エントリの詳細は references/announcements/ および references/sessions/ 配下を参照。',
     '',
   ];
 
-  // Group by topic
+  return lines.join('\n');
+}
+
+/** Build the announcements index */
+function buildAnnouncementsIndex(
+  entries: ContentEntry[],
+  topics: TopicDef[],
+): string {
+  const announcements = entries.filter(
+    (e) => shouldBuildSkills(e) && e.frontmatter.content_type === 'announcement',
+  );
+
+  const lines: string[] = [
+    '# アナウンス一覧',
+    '',
+    `Microsoft Build 2026 で発表された ${announcements.length} 件のアナウンス。`,
+    '',
+  ];
+
   for (const topic of topics) {
-    const topicEntries = skillEntries.filter(
+    const topicEntries = announcements.filter(
       (e) => e.frontmatter.topic === topic.slug,
     );
     if (topicEntries.length === 0) continue;
@@ -55,7 +95,43 @@ function buildSkillHub(entries: ContentEntry[], topics: TopicDef[]): string {
     lines.push(`## ${topic.name}`);
     lines.push('');
     for (const e of topicEntries) {
-      const refPath = `references/${e.relativePath.replace(/\.md$/, '.md')}`;
+      const refPath = `announcements/${e.frontmatter.id}.md`;
+      lines.push(
+        `- [${e.frontmatter.title}](${refPath}): ${e.frontmatter.summary.split('\n')[0]}`,
+      );
+    }
+    lines.push('');
+  }
+
+  return lines.join('\n');
+}
+
+/** Build the sessions index */
+function buildSessionsIndex(
+  entries: ContentEntry[],
+  topics: TopicDef[],
+): string {
+  const sessions = entries.filter(
+    (e) => shouldBuildSkills(e) && e.frontmatter.content_type === 'session',
+  );
+
+  const lines: string[] = [
+    '# セッション一覧',
+    '',
+    `Microsoft Build 2026 の ${sessions.length} 件のセッション要約。`,
+    '',
+  ];
+
+  for (const topic of topics) {
+    const topicEntries = sessions.filter(
+      (e) => e.frontmatter.topic === topic.slug,
+    );
+    if (topicEntries.length === 0) continue;
+
+    lines.push(`## ${topic.name}`);
+    lines.push('');
+    for (const e of topicEntries) {
+      const refPath = `sessions/${e.frontmatter.id}.md`;
       lines.push(
         `- [${e.frontmatter.title}](${refPath}): ${e.frontmatter.summary.split('\n')[0]}`,
       );
@@ -124,6 +200,18 @@ cleanDir(path.join(SKILLS_DIR, 'msbuild-2026', 'references'));
 writeFile(
   path.join(SKILLS_DIR, 'msbuild-2026', 'SKILL.md'),
   buildSkillHub(entries, topics),
+);
+
+// Announcements index
+writeFile(
+  path.join(SKILLS_DIR, 'msbuild-2026', 'references', 'announcements.md'),
+  buildAnnouncementsIndex(entries, topics),
+);
+
+// Sessions index
+writeFile(
+  path.join(SKILLS_DIR, 'msbuild-2026', 'references', 'sessions.md'),
+  buildSessionsIndex(entries, topics),
 );
 
 // References
